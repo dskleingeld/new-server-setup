@@ -1,0 +1,14 @@
+# traffic on 433 is send to different backends based on the subdomain on which they arrive
+
+# http header 							backend
+domain.com/.well-known/acme-challenge/	letsencryt_backend
+matrix.domain.com 						matrix
+home.domain.com 						home_automation
+
+# send sensor data/errors to data_splitter
+dataserver.domain.com/post_data 		data_splitter
+dataserver.domain.com/post_error 		data_splitter
+
+# forward request for webpages to the two dataserver instances
+dataserver.domain.com 					data_server
+dev.dataserver.domain.com 				data_server_dev

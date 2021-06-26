@@ -1,0 +1,7 @@
+[Unit]
+Description=Renews certificates using certbot and combines the output into a certificate chain
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/request_certs.sh --renew
+PrivateTmp=true
