@@ -1,5 +1,6 @@
-Home linux based server hosting:
+#Home server setup:
 
+Personal home server setup hosting:
 - haproxy for tls and forwarding
 - matrix homeserver
 	- telegram matrix bridge
@@ -11,21 +12,21 @@ Home linux based server hosting:
 	- data server 
 	- data server dev
 
-# Forwarding and TLS
+## Forwarding and TLS
 HAproxy is used to
 - forwarding https traffic to backends based on url
 - handle tls termination (port 443 and 8443)
 
 HAproxy is started by systemd as root, binds to privelledged ports and then runs as that user *haproxy*. I use systemd to sandbox HAproxy as much as possible. I use certbot to request and renew the certificate. Certbot is ran twice a day using systemd timers.
 
-## install
+### install
 Simply clone this repo and run setup/haproxy.sh
 
-# Matrix
+## Matrix
 
-# Home Automation
+## Home Automation
 
-# Home Data
+## Home Data
 <!-- ## setup 
 
 Install certbot and haproxy 
