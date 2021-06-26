@@ -1,4 +1,4 @@
-#Home server setup:
+# Home server setup:
 
 Personal home server setup hosting:
 - haproxy for tls and forwarding
