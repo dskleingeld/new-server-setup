@@ -7,15 +7,15 @@ Wants=network-online.target
 
 [Service]
 Environment="RUST_BACKTRACE=1"
-WorkingDirectory=/home/dataserver/
-ExecStart=/home/dataserver/server \
+WorkingDirectory=/home/data/
+ExecStart=/home/data/dataserver \
 	--external-port 443 --port 34322 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
 	--service \
 ExecStop=/bin/kill -s SIGKILL $MAINPID
-User=dataserver
-Group=dataserver
+User=data
+Group=data
 
 [Install]
 WantedBy=multi-user.target
