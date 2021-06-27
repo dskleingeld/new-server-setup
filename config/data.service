@@ -1,0 +1,21 @@
+# TODO after install, replace <TOKEN> and <DOMAIN> with actual values
+
+[Unit]
+Description=Data server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="RUST_BACKTRACE=1"
+WorkingDirectory=/home/dataserver/
+ExecStart=/home/dataserver/server \
+	--external-port 443 --port 38973 \
+	--domain <DOMAIN> \
+	--token <TOKEN> \
+	--service \
+ExecStop=/bin/kill -s SIGKILL $MAINPID
+User=dataserver
+Group=dataserver
+
+[Install]
+WantedBy=multi-user.target

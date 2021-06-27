@@ -1,0 +1,21 @@
+# TODO after install, replace <TOKEN> and <DOMAIN> with actual values
+
+[Unit]
+Description=Data splitter
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/home/dataserver/
+ExecStart=/home/dataserver/splitter \
+	--domain <DOMAIN> \
+	--port_self 38972
+	--port_stable 
+	--port_dev 
+ExecStop= kill -s SIGINT $MAINPID
+User=dataserver
+Group=dataserver
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=data_server

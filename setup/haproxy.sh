@@ -41,5 +41,5 @@ sudo systemctl start renew_certs
 read -r -p "request fresh certificate? [y/N] " input
 if [[ $input == "y" ]]; then
 	echo "requesting fresh certificate"
-	sudo .${SCRIPT_DIR}renew_certs.sh --renew
+	sudo .${SCRIPT_DIR}renew_certs.sh --request
 fi
