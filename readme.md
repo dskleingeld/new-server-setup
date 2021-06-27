@@ -20,12 +20,17 @@ HAproxy is used to
 HAproxy is started by systemd as root, binds to privelledged ports and then runs as that user *haproxy*. I use systemd to sandbox HAproxy as much as possible. I use certbot to request and renew the certificate. Certbot is ran twice a day using systemd timers.
 
 ### local ports
-Ports should be assigned between 1024 and 49151. I use 34320-34325
- - matrix homeserver TODO
- - home automation (ha) 34320
- - data splitter (datasplitter) 34321
- - data server (data) 34322
- - data server dev (data\_dev) 34323
+Ports should be assigned between 1024 and 49151. I use 34320-34335. These need to match the backends in config/haproxy.cfg.
+ - certbot (renew\_certs) 34320
+ - matrix (TODO) 34321
+	 - reserved for telegram bridge 34322
+	 - reserved for discord bridge 34323
+	 - reserved for future bridge 34324
+	 - reserved for future bridge 34325
+ - home automation (ha) 34326
+ - data splitter (datasplitter) 34327
+ - data server (data) 34328
+ - data server dev (data\_dev) 34329
 
 ### install
 Simply clone this repo and run setup/haproxy.sh
