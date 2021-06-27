@@ -7,15 +7,21 @@ set -e
 # setup folder
 #
 
+DOMAIN=$1 # optional argument: domain
+[ -z "$DOMAIN" ] || read -r -p "enter domain on which to deploy: " DOMAIN
+
 # install haproxy and certbot
 sudo apt-get install -y haproxy certbot -
 
 # setup haproxy user
 sudo usermod -s /sbin/nologin haproxy
 
-# move config into place
-sudo cp ../config/haproxy.cfg /etc/haproxy/
-sudo chown root:root /etc/haproxy/haproxy.cfg # no reason for mortals to access this
+# move config into place, set the correct domain and set root owned
+for file in haproxy.cfg hosts.maps; do
+	sudo cp ../config/$file /etc/haproxy/
+	sed -i "s/<DOMAIN>/$DOMAIN/g" /etc/haproxy/$file  # set domain
+	sudo chown root:root /etc/haproxy/$file  # no reason for mortals to touch this
+done
 
 # install systemd service and enable it
 SYSTEMD_DIR=/etc/systemd/system/
@@ -28,7 +34,8 @@ sudo systemctl start haproxy
 # setup timer to run certificates update script twice a day
 SCRIPT_DIR=/usr/bin/
 sudo cp ../bin/request_certs.sh $SCRIPT_DIR
-sudo chown root:root /usr/bin/request_certs.sh # no reason for mortals to access this
+sed -i "s/<DOMAIN>/$DOMAIN/g" $SCRIPT_DIR/request_certs.sh  # set domain
+sudo chown root:root $SCRIPT_DIR/bin/request_certs.sh  # no reason for mortals to access this
 
 sudo cp ../config/renew_certs.service $SYSTEMD_DIR
 sudo cp ../config/renew_certs.timer $SYSTEMD_DIR

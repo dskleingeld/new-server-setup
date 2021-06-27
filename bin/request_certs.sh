@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DOMAIN="davidsk.dev"
+DOMAIN=<DOMAIN>
 EMAIL=admin@$DOMAIN
 DIR="/etc/ssl/certs"
 CERT="test"
