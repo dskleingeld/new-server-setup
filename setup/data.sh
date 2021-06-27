@@ -8,10 +8,10 @@ DOMAIN=$1
 TOKEN=$2
 DEV_DOMAIN=$3
 DEV_TOKEN=$4
-[ -z "$DOMAIN" ] || read -r -p "domain for the stable server: " DOMAIN
-[ -z "$TOKEN" ] || read -r -p "telegram token for the stable server: " TOKEN
-[ -z "$DEV_DOMAIN" ] || read -r -p "domain for the dev server: " DEV_DOMAIN
-[ -z "$DEV_TOKEN" ] || read -r -p "telegram on which to deploy: " DEV_TOKEN
+[ -n "$DOMAIN" ] || read -r -p "domain for the stable server: " DOMAIN
+[ -n "$TOKEN" ] || read -r -p "telegram token for the stable server: " TOKEN
+[ -n "$DEV_DOMAIN" ] || read -r -p "domain for the dev server: " DEV_DOMAIN
+[ -n "$DEV_TOKEN" ] || read -r -p "telegram on which to deploy: " DEV_TOKEN
 
 # add user if not yet present
 sudo adduser data

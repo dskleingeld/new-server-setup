@@ -9,11 +9,11 @@ TOKEN=$2
 ADMIN_PASS=$3
 HA_TOKEN=$4
 ALLOWED_IDS="${@:5}"
-[ -z "$DOMAIN" ] || read -r -p "domain for the server: " DOMAIN
-[ -z "$TOKEN" ] || read -r -p "telegram token for the server: " TOKEN
-[ -z "$ADMIN_PASS" ] || read -r -p "admin password" ADMIN_PASS
-[ -z "$HA_TOKEN" ] || read -r -p "token on which data is recieved: " HA_TOKEN
-[ -z "$ALLOWED_IDS" ] || read -r -p "telegram ids that can access the bot: " ALLOWED_IDS
+[ -n "$DOMAIN" ] || read -r -p "domain for the server: " DOMAIN
+[ -n "$TOKEN" ] || read -r -p "telegram token for the server: " TOKEN
+[ -n "$ADMIN_PASS" ] || read -r -p "admin password" ADMIN_PASS
+[ -n "$HA_TOKEN" ] || read -r -p "token on which data is recieved: " HA_TOKEN
+[ -n "$ALLOWED_IDS" ] || read -r -p "telegram ids that can access the bot: " ALLOWED_IDS
 
 # add user if not yet present
 sudo adduser ha
