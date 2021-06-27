@@ -26,7 +26,7 @@ Simply clone this repo and run setup/haproxy.sh
 
 ## Home Automation
 
-## Home Data
+## Home Data Collection
 <!-- ## setup 
 
 Install certbot and haproxy 

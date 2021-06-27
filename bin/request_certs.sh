@@ -5,9 +5,9 @@ DOMAIN="davidsk.dev"
 DIR="/etc/ssl/certs"
 CERT="test"
 
-if [[ $0 == "--renew" ]]; then
+if [[ $1 == "--renew" ]]; then
 	certbot renew --force-renewal --tls-sni-01-port=8888
-elif [[ $0 == "--request" ]]; then
+elif [[ $1 == "--request" ]]; then
 	certbot certonly --standalone -d $DOMAIN \
 		--non-interactive --agree-tos --email admin@example.com \
 		--http-01-port=8888
