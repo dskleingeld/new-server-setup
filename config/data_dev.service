@@ -9,7 +9,7 @@ Wants=network-online.target
 Environment="RUST_BACKTRACE=1"
 WorkingDirectory=/home/pi/dataserver_dev/
 ExecStart=/home/pi/dataserver_dev/server \
-	--external-port 443 --port 38971 \
+	--external-port 443 --port 34323 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
 	--service \

@@ -9,7 +9,7 @@ Wants=network-online.target
 Environment="RUST_BACKTRACE=1"
 WorkingDirectory=/home/dataserver/
 ExecStart=/home/dataserver/server \
-	--external-port 443 --port 38973 \
+	--external-port 443 --port 34322 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
 	--service \

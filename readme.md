@@ -23,9 +23,9 @@ HAproxy is started by systemd as root, binds to privelledged ports and then runs
 Ports should be assigned between 1024 and 49151. I use 34320-34325
  - matrix homeserver TODO
  - home automation (ha) 34320
- - data splitter 34321
- - data server 34322
- - data server dev 34323
+ - data splitter (datasplitter) 34321
+ - data server (data) 34322
+ - data server dev (data\_dev) 34323
 
 ### install
 Simply clone this repo and run setup/haproxy.sh

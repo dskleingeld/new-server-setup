@@ -1,0 +1,24 @@
+# TODO after install, replace <DOMAIN>, <ADMIN_PASS>, <ALLOWED_IDS> and <HA_TOKEN> with actual values
+
+[Unit]
+Description=Data server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/home/ha
+Environment="RUST_BACKTRACE=1"
+ExecStart=/home/ha/homeAutomation \
+  --domain <DOMAIN> \
+  --external-port 88 \
+  --port 34320 \
+  --admin-password <ADMIN_PASS> \
+  --token <TOKEN>\
+  --allowed-telegram-ids <ALLOWED_IDS> \
+  --ha-key <HA_TOKEN>
+ExecStop=/bin/kill -s SIGKILL $MAINPID
+User=ha
+Group=ha
+
+[Install]
+WantedBy=multi-user.target
