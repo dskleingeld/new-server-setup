@@ -4,15 +4,6 @@ set -e
 # This script only sets up the user for the data and data splitter service
 # it does not compile the executable nor move them in place
 
-DOMAIN=$1
-TOKEN=$2
-DEV_DOMAIN=$3
-DEV_TOKEN=$4
-[ -n "$DOMAIN" ] || read -r -p "domain for the stable server: " DOMAIN
-[ -n "$TOKEN" ] || read -r -p "telegram token for the stable server: " TOKEN
-[ -n "$DEV_DOMAIN" ] || read -r -p "domain for the dev server: " DEV_DOMAIN
-[ -n "$DEV_TOKEN" ] || read -r -p "telegram on which to deploy: " DEV_TOKEN
-
 # add user if not yet present
 sudo adduser data
 
@@ -43,6 +34,15 @@ sudo chmod +x $SPLITTER
 for service in data data_dev datasplitter; do
 	sudo cp ../config/$service.service /etc/systemd/system/$service.service
 done
+
+DOMAIN=$1
+TOKEN=$2
+DEV_DOMAIN=$3
+DEV_TOKEN=$4
+[ -n "$DOMAIN" ] || read -r -p "domain for the stable server: " DOMAIN
+[ -n "$TOKEN" ] || read -r -p "telegram token for the stable server: " TOKEN
+[ -n "$DEV_DOMAIN" ] || read -r -p "domain for the dev server: " DEV_DOMAIN
+[ -n "$DEV_TOKEN" ] || read -r -p "telegram on which to deploy: " DEV_TOKEN
 
 # set env variables
 sed -i "s/<DOMAIN>/$DOMAIN/g" /etc/systemd/system/data.service
