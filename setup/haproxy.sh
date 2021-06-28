@@ -27,26 +27,28 @@ done
 SYSTEMD_DIR=/etc/systemd/system/
 sudo cp ../config/haproxy.service $SYSTEMD_DIR
 sudo systemctl enable haproxy
-sudo systemctl start haproxy
-
 
 
 # setup timer to run certificates update script twice a day
-SCRIPT_DIR=/usr/bin/
-sudo cp ../bin/request_certs.sh $SCRIPT_DIR
-sudo sed -i "s/<DOMAIN>/$DOMAIN/g" $SCRIPT_DIR/request_certs.sh  # set domain
-sudo chown root:root $SCRIPT_DIR/bin/request_certs.sh  # no reason for mortals to access this
+sudo cp ../bin/request_certs.sh /usr/bin/
+sudo sed -i "s/<DOMAIN>/$DOMAIN/g" /usr/bin/request_certs.sh  # set domain
+sudo chown root:root /usr/bin/request_certs.sh  # no reason for mortals to access this
 
 sudo cp ../config/renew_certs.service $SYSTEMD_DIR
 sudo cp ../config/renew_certs.timer $SYSTEMD_DIR
 sudo systemctl enable renew_certs
-sudo systemctl start renew_certs
-
 
 
 # ask user if they want to run initial certbot run
-read -r -p "request fresh certificate? [y/N] " input
-if [[ $input == "y" ]]; then
-	echo "requesting fresh certificate"
-	sudo .${SCRIPT_DIR}renew_certs.sh --request
+if [[ ! -f /etc/ssl/certs/$DOMAIN.pem ]]; then
+	echo "need to request fresh certificate"
+
+	read -r -p "request fresh certificate? [y/N] " input
+	if [[ $input == "y" ]]; then
+		echo "requesting"
+		sudo /usr/bin/request_certs.sh --request
+	fi
 fi
+
+sudo systemctl start renew_certs
+sudo systemctl start haproxy
