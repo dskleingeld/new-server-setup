@@ -50,5 +50,5 @@ if [[ ! -f /etc/ssl/certs/$DOMAIN.pem ]]; then
 	fi
 fi
 
-sudo systemctl start renew_certs
 sudo systemctl start haproxy
+sudo systemctl start renew_certs

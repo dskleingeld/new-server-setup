@@ -14,16 +14,16 @@ Restart=always
 SuccessExitStatus=143
 Type=notify
 
-# Extra sandboxing
-NoNewPrivileges=true
-ProtectHome=true  # can not access /home /root or /run/user
-ProtectSystem=strict  # file system mounted read-only except /dev /proc and /sys
-ReadWritePaths=/run/haproxy.pid /run/haproxy-master.sock  # allow write acces to these dirs
-ProtectKernelTunables=true
-ProtectKernelModules=true
-ProtectControlGroups=true
-# limit the systemcalls allowed
-SystemCallFilter=~@cpu-emulation @keyring @module @obsolete @raw-io @reboot @swap @sync
+# # Extra sandboxing
+# NoNewPrivileges=true
+# ProtectHome=true  # can not access /home /root or /run/user
+# ProtectSystem=strict  # file system mounted read-only except /dev /proc and /sys
+# ReadWritePaths=/run/haproxy.pid /run/haproxy-master.sock  # allow write acces to these dirs
+# ProtectKernelTunables=true
+# ProtectKernelModules=true
+# ProtectControlGroups=true
+# # limit the systemcalls allowed
+# SystemCallFilter=~@cpu-emulation @keyring @module @obsolete @raw-io @reboot @swap @sync
 
 [Install]
 WantedBy=multi-user.target
