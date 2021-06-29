@@ -5,7 +5,7 @@ set -e
 # it does not compile the executable nor move them in place
 
 # add user if not yet present
-sudo adduser data
+id -u data || sudo useradd --shell /sbin/nologin data
 
 SERVER=/home/data/dataserver
 DEV_SERVER=/home/pi/dataserver_dev/dataserver

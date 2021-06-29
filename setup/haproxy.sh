@@ -13,8 +13,8 @@ DOMAIN=$1 # optional argument: domain
 # install haproxy and certbot
 sudo apt-get install -y haproxy certbot -
 
-# setup haproxy user
-sudo usermod -s /sbin/nologin haproxy
+# setup haproxy user if it does not exist yet
+id -u haproxy || sudo useradd --no-create-home --shell /sbin/nologin haproxy
 
 # move config into place, set the correct domain and set root owned
 for file in haproxy.cfg hosts.map; do

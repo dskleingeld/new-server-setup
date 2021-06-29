@@ -16,7 +16,7 @@ ALLOWED_IDS="${@:5}"
 [ -n "$ALLOWED_IDS" ] || read -r -p "telegram ids that can access the bot: " ALLOWED_IDS
 
 # add user if not yet present
-sudo adduser ha
+id -u ha || sudo useradd --shell /sbin/nologin ha
 
 EXEC=/home/ha/homeAutomation
 while true
