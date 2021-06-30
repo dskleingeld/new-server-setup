@@ -39,4 +39,4 @@ sudo sed -i "s/<HA_TOKEN>/$HA_TOKEN/g" /etc/systemd/system/ha.service
 sudo sed -i "s/<ALLOWED_IDS>/$ALLOWED_IDS/g" /etc/systemd/system/ha.service
 
 sudo systemctl enable ha
-sudo systemctl start ha
+sudo systemctl restart ha

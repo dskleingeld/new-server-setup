@@ -10,7 +10,7 @@ Wants=network-online.target
 Environment="RUST_BACKTRACE=1"
 WorkingDirectory=/home/<USER>/dataserver_dev/
 ExecStart=/home/<USER>/dataserver_dev/dataserver \
-	--port 34323 \
+	--port 34329 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
 	--service

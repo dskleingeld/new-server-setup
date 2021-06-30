@@ -55,5 +55,5 @@ sudo sed -i "s/<USER>/$USER/g" /etc/systemd/system/data_dev.service
 
 for service in data data_dev datasplitter; do
 	sudo systemctl enable $service
-	sudo systemctl start $service
+	sudo systemctl restart $service
 done
