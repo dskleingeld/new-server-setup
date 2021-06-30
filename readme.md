@@ -42,7 +42,7 @@ TODO
 From sensordata, button presses, wakeup time, playing audio and telegram bot input: manages wakeup "alarm", lamps and music. [source](https://github.com/dskleingeld/HomeAutomation).
 
 Recieves: 
-on domain.tld:433/ha\_key: TODO change to ha.domain.tld/ha\_key
+on domain.tld:433/ha\_key: TODO change to 127.0.0.1/ha\_key or ha.domain.tld/ha\_key
 - sensordata (including button pushes) from microservice [sensor central](https://github.com/dskleingeld/sensor_central) 
 on domain.tld:433/bot\_token: TODO change to ha.domain.tld/bot\_token
 - telegram bot messages via webhook 
@@ -53,12 +53,13 @@ on domain.tld:433/commands/..  TODO change to ha.domain.tld/api/..
 
 ### install 
 Run setup/ha.sh
+make sure to set up home sensors
 
 ## Home Data Collection
 Collects and inspect data from various sensors. Provides notifications at threshold values, interface using telegram bot and site. [source](https://github.com/dskleingeld/dataserver)
 
 Recieves: TODO change all these to data.domain.tld/..
-on domain.tld:88/post\_..:
+on domain.tld:88/post\_..: TODO on on local 127.0.0.1/post\_
 - sensor data from microservice [sensor central](https://github.com/dskleingeld/sensor_central) 
 - sensor data from remote wifi sensor
 on domain.tld:88/..:
@@ -70,3 +71,9 @@ I also run a development version of this on dev.data.domain.tld/.. incoming data
 
 ### install 
 Run setup/data.sh
+
+## Home sensors
+Measures using attached sensors and collects data from ble sensors in the field. Sends data to the data collection instances and to the home automation system.
+
+### install 
+Run setup/sens.sh

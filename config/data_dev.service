@@ -1,21 +1,22 @@
-# TODO after install, replace <TOKEN> and <DOMAIN> with actual values
+# TODO after install, replace <TOKEN>, <DOMAIN> and <USER> with actual values. 
+# USER should be an easily accessible user
 
 [Unit]
-Description=Data server
+Description=Data server development instance
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 Environment="RUST_BACKTRACE=1"
-WorkingDirectory=/home/pi/dataserver_dev/
-ExecStart=/home/pi/dataserver_dev/server \
-	--external-port 443 --port 34323 \
+WorkingDirectory=/home/<USER>/dataserver_dev/
+ExecStart=/home/<USER>/dataserver_dev/dataserver \
+	--port 34323 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
-	--service \
+	--service
 ExecStop=/bin/kill -s SIGKILL $MAINPID
-User=pi
-Group=pi
+User=<USER>
+Group=<USER>
 
 [Install]
 WantedBy=multi-user.target

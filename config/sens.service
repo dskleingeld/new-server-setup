@@ -1,0 +1,23 @@
+[Unit]
+Description=Sensor Central
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="RUST_BACKTRACE=1"
+ExecStart=/home/ha/sensor_central \
+  --ha-port 34326 \
+  --ha-key <HA_KEY> \
+  --data-port 34327 \
+  --data-key <DATA_KEY>\
+  --ble-key [0]
+ExecStop=/bin/kill -s SIGKILL $MAINPID
+User=root 
+# both where pi, changed to root to allow whiping of 
+# bluez cache in root owned /var/lib/bluetooth during 
+# debugging
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
