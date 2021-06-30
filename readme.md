@@ -19,6 +19,9 @@ HAproxy is used to
 
 HAproxy is started by systemd as root, binds to privelledged ports and then runs as that user *haproxy*. I use systemd to sandbox HAproxy as much as possible. I use certbot to request and renew the certificate. Certbot is ran twice a day using systemd timers.
 
+### note on dns
+A catch all subdomain should be added to the DNS records. Currently I use subdomains: ha, data and devk_data. Instructions (here)[https://www.namecheap.com/support/knowledgebase/article.aspx/597/2237/how-can-i-set-up-a-catchall-wildcard-subdomain/]. This also works with dynamic dns.
+
 ### local ports
 Ports should be assigned between 1024 and 49151. I use 34320-34335. These need to match the backends in config/haproxy.cfg.
  - certbot (renew\_certs) 34320
