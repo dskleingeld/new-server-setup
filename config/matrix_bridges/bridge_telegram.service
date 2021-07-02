@@ -1,0 +1,16 @@
+[Unit]
+Description=Matrix Telegram bridge
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm \
+	--name matrix-telegram-bridge \
+	-p 127.0.0.1:34322:34322 \
+	--mount src=/home/matrix/bridges/telegram,target=/data,type=bind \
+	<IMG>
+ExecStop=/usr/bin/docker stop -t 2 matrix-telegram-bridge
+
+[Install]
+WantedBy=default.target

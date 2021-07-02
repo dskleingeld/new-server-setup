@@ -15,7 +15,7 @@ Personal home server setup hosting:
 ## Forwarding and TLS
 HAproxy is used to
 - forwarding https traffic to backends based on url
-- handle tls termination (port 443 and 8443)
+- handle tls termination (port 443 and matrix)
 
 HAproxy is started by systemd as root, binds to privelledged ports and then runs as that user *haproxy*. I use systemd to sandbox HAproxy as much as possible. I use certbot to request and renew the certificate. Certbot is ran twice a day using systemd timers.
 
