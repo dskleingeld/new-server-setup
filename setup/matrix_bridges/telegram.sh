@@ -26,10 +26,18 @@ IMG=dock.mau.dev/tulir/mautrix-telegram:latest
 sudo -u matrix docker pull $IMG
 
 # generate registration if not present
-if sudo test -f $DIR/registration.yaml; then
+while ! sudo test -f $DIR/registration.yaml; do
 	sudo -u matrix docker run --mount src=$DIR,target=/data,type=bind $IMG
 	echo "registration file generated, please copy it to you homeserver"
-fi
+done
+
+# copy registration data into config
+as_token=$(sudo head -2 $DIR/registration.yaml | tail -1 | cut -d " " -f 2)
+hs_token=$(sudo head -3 $DIR/registration.yaml | tail -1 | cut -d " " -f 2)
+echo $as_token
+echo $hs_token
+sudo sed -i "s/<AS_TOKEN>/$as_token/g" $DIR/config.yaml
+sudo sed -i "s/<HS_TOKEN>/$hs_token/g" $DIR/config.yaml
 
 # setup service
 sudo cp ../../config/matrix_bridges/bridge_telegram.service \
