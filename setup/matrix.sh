@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e 
 
 # add user with home dir if not yet present
 id -u matrix&>/dev/null || sudo useradd -m matrix

@@ -39,7 +39,12 @@ Ports should be assigned between 1024 and 49151. I use 34320-34335. These need t
 Simply clone this repo and run setup/haproxy.sh
 
 ## Matrix
-TODO
+
+### install
+
+#### telegram bridge
+run setup/matrix\_bridges/telegram.sh. Now create a new unencrypted room in matrix and invite the telegram bot. If everything works it will instruct you on how to login.
+
 
 ## Home Automation
 From sensordata, button presses, wakeup time, playing audio and telegram bot input: manages wakeup "alarm", lamps and music. [source](https://github.com/dskleingeld/HomeAutomation).
