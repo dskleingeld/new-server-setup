@@ -7,6 +7,10 @@ set -e
 
 sudo timedatectl set-timezone Europe/Amsterdam
 
+# get rid of snaps
+sudo apt-get purge --assume-yes snapd
+sudo apt-get autoremove --assume-yes
+
 exit -1  # not yet done
 
 OLD_USER=$USER

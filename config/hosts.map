@@ -7,6 +7,9 @@
 <DOMAIN>/.well-known/acme-challenge/	letsencryt_backend
 
 <DOMAIN>/_matrix 						matrix
+<DOMAIN>/								webserver
+
+# Home automation system
 ha.<DOMAIN>								home_automation
 
 # send sensor data/errors to data_splitter

@@ -34,6 +34,7 @@ Ports should be assigned between 1024 and 49151. I use 34320-34335. These need t
  - data splitter (datasplitter) 34327
  - data server (data) 34328
  - data server dev (data\_dev) 34329
+ - web server (webserver) 34330
 
 ### install
 Simply clone this repo and run setup/haproxy.sh
