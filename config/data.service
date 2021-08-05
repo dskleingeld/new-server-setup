@@ -9,10 +9,10 @@ Wants=network-online.target
 Environment="RUST_BACKTRACE=1"
 WorkingDirectory=/home/data/
 ExecStart=/home/data/dataserver \
-	--external-port 443 --port 34322 \
+	--port 34328 \
 	--domain <DOMAIN> \
 	--token <TOKEN> \
-	--service \
+	--service
 ExecStop=/bin/kill -s SIGKILL $MAINPID
 StartLimitIntervalSec=90
 StartLimitBurst=20

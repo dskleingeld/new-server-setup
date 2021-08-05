@@ -6,8 +6,11 @@
 # forward lets encrypt to certbot
 <DOMAIN>/.well-known/acme-challenge/	letsencryt_backend
 
-matrix.domain.com 						matrix
-ha.<DOMAIN>
+<DOMAIN>/_matrix 						matrix
+<DOMAIN>/								webserver
+
+# Home automation system
+ha.<DOMAIN>								home_automation
 
 # send sensor data/errors to data_splitter
 data.<DOMAIN>/post_data 				data_splitter

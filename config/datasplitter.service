@@ -6,9 +6,9 @@ Wants=network-online.target
 [Service]
 WorkingDirectory=/home/data/
 ExecStart=/home/data/datasplitter \
-	--port_self 34327
-	--port_stable 34328
-	--port_dev 34329
+	--port 34327 \
+	--port-stable-server 34328 \
+	--port-dev-server 34329
 ExecStop= kill -s SIGINT $MAINPID
 StartLimitIntervalSec=90
 StartLimitBurst=20
@@ -18,4 +18,3 @@ Group=data
 
 [Install]
 WantedBy=multi-user.target
-RequiredBy=data_server

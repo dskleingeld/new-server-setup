@@ -3,7 +3,7 @@ Description=Renews certificates using certbot and combines the output into a cer
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/request_certs.sh --renew
+ExecStart=/usr/bin/request_certs.sh --renew --production
 PrivateTmp=true
 
 [Install]

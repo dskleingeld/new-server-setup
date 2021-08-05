@@ -1,0 +1,16 @@
+[Unit]
+Description=Web page server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="RUST_BACKTRACE=1"
+WorkingDirectory=/home/webserver/
+ExecStart=/home/webserver/webserver \
+	--port 34330
+ExecStop=/bin/kill -s SIGKILL $MAINPID
+User=webserver
+Group=webserver
+
+[Install]
+WantedBy=multi-user.target

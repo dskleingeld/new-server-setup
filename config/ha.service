@@ -1,7 +1,7 @@
 # TODO after install, replace <DOMAIN>, <ADMIN_PASS>, <ALLOWED_IDS> and <HA_TOKEN> with actual values
 
 [Unit]
-Description=Data server
+Description=Home Automation System
 After=network-online.target
 Wants=network-online.target
 
@@ -10,8 +10,7 @@ WorkingDirectory=/home/ha
 Environment="RUST_BACKTRACE=1"
 ExecStart=/home/ha/homeAutomation \
   --domain <DOMAIN> \
-  --external-port 88 \
-  --port 34320 \
+  --port 34326 \
   --admin-password <ADMIN_PASS> \
   --token <TOKEN>\
   --allowed-telegram-ids <ALLOWED_IDS> \

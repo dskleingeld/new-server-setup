@@ -8,18 +8,21 @@ set -e
 #
 
 DOMAIN=$1 # optional argument: domain
+STATS_PASSW=$2 # optional argument: statistic page password
 [ -n "$DOMAIN" ] || read -r -p "enter domain on which to deploy: " DOMAIN
+[ -n "$STATS_PASSW" ] || read -r -p "enter stats page admin password: " STATS_PASSW
 
 # install haproxy and certbot
 sudo apt-get install -y haproxy certbot -
 
 # setup haproxy user if it does not exist yet
-id -u haproxy || sudo useradd --no-create-home --shell /sbin/nologin haproxy
+id -u haproxy&>/dev/null || sudo useradd --no-create-home --shell /sbin/nologin haproxy
 
 # move config into place, set the correct domain and set root owned
 for file in haproxy.cfg hosts.map; do
 	sudo cp ../config/$file /etc/haproxy/
 	sudo sed -i "s/<DOMAIN>/$DOMAIN/g" /etc/haproxy/$file  # set domain
+	sudo sed -i "s/<STATS_PASSW>/$STATS_PASSW/g" /etc/haproxy/$file  # set domain
 	sudo chown root:root /etc/haproxy/$file  # no reason for mortals to touch this
 done
 
@@ -50,5 +53,5 @@ if [[ ! -f /etc/ssl/certs/$DOMAIN.pem ]]; then
 	fi
 fi
 
-sudo systemctl start haproxy
-sudo systemctl start renew_certs
+sudo systemctl restart haproxy
+sudo systemctl restart renew_certs
