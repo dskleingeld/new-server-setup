@@ -10,6 +10,9 @@ ExecStart=/home/data/datasplitter \
 	--port-stable-server 34328 \
 	--port-dev-server 34329
 ExecStop= kill -s SIGINT $MAINPID
+StartLimitIntervalSec=90
+StartLimitBurst=20
+Restart=always
 User=data
 Group=data
 

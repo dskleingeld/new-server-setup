@@ -16,6 +16,9 @@ ExecStart=/home/ha/homeAutomation \
   --allowed-telegram-ids <ALLOWED_IDS> \
   --ha-key <HA_TOKEN>
 ExecStop=/bin/kill -s SIGKILL $MAINPID
+StartLimitIntervalSec=90
+StartLimitBurst=20
+Restart=always
 User=ha
 Group=ha
 

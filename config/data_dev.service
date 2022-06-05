@@ -15,6 +15,9 @@ ExecStart=/home/<USER>/dataserver_dev/dataserver \
 	--token <TOKEN> \
 	--service
 ExecStop=/bin/kill -s SIGKILL $MAINPID
+StartLimitIntervalSec=90
+StartLimitBurst=20
+Restart=always
 User=<USER>
 Group=<USER>
 

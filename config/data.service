@@ -14,6 +14,9 @@ ExecStart=/home/data/dataserver \
 	--token <TOKEN> \
 	--service
 ExecStop=/bin/kill -s SIGKILL $MAINPID
+StartLimitIntervalSec=90
+StartLimitBurst=20
+Restart=always
 User=data
 Group=data
 
