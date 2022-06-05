@@ -1,0 +1,16 @@
+[Unit]
+Description=Matrix Signal bridge
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm \
+	--name matrix-signal-bridge \
+	-p 127.0.0.1:34323:34323 \
+	--mount src=/home/matrix/bridges/signal,target=/data,type=bind \
+	<IMG>
+ExecStop=/usr/bin/docker stop -t 2 matrix-signal-bridge
+
+[Install]
+WantedBy=default.target

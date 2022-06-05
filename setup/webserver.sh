@@ -23,3 +23,6 @@ sudo chmod +x $EXEC
 
 # setup service
 sudo cp ../config/webserver.service /etc/systemd/system/webserver.service
+
+sudo systemctl enable webserver
+sudo systemctl restart webserver

@@ -11,6 +11,10 @@ ensure_docker() {
 		return
 	fi
 
+	if exists docker-compose; then
+		return
+	fi
+
 	sudo apt-get update
 	sudo apt-get install --assume-yes \
 		apt-transport-https \
@@ -29,7 +33,7 @@ ensure_docker() {
 
 	# actually install docker
 	sudo apt-get update
-	sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
+	sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io docker-compose
 
 	# set up docker group
 	getent group docker&>/dev/null || sudo groupadd docker  # add group only if it did not exist

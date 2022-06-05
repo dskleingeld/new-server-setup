@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+  mautrix-signal:
+    container_name: mautrix-signal
+    image: dock.mau.dev/mautrix/signal
+    restart: unless-stopped
+    volumes:
+    - ./data:/data
+    - ./signald:/signald
+    depends_on:
+    - signald
+    - db
+
+    # If synapse is running outside of docker, you'll need to expose the port.
+    # Note that in most cases you should either run everything inside docker
+    # or everything outside docker, rather than mixing docker things with
+    # non-docker things.
+    ports:
+    - "34323:34323"
+    # You'll also probably want this so the bridge can reach Synapse directly
+    # using something like `http://host.docker.internal:8008` as the address:
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+    # If synapse is in a different network, then add this container to that network.
+    # Note the networks object at the bottom too.
+    #networks:
+    #- default  # keep the container in the default network too so that the db container is reachable.
+    #- synapsenet
+
+  signald:
+    container_name: signald
+    image: docker.io/signald/signald
+    restart: unless-stopped
+    volumes: 
+    - ./signald:/signald
+  db:
+    image: postgres:13-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mautrixsignal
+      POSTGRES_DATABASE: mautrixsignal
+      POSTGRES_PASSWORD: <PASSW>
+    volumes:
+    - ./db:/var/lib/postgresql/data
+
+# When synapse is in a different network (note the networks object in the service too):
+#networks:
+#  synapsenet:
+#    external:
+#      name: synapsenet
