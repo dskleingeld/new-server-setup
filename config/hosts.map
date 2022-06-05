@@ -9,6 +9,8 @@
 <DOMAIN>/_matrix 						matrix
 <DOMAIN>/								webserver
 
+paste.<DOMAIN>/ 						microbin
+
 # Home automation system
 ha.<DOMAIN>								home_automation
 

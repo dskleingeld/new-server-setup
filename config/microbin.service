@@ -1,0 +1,22 @@
+[Unit]
+Description=MicroBin
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=microbin
+WorkingDirectory=/home/microbin/microbin
+
+# This is the location of my executable 
+ExecStart=/home/microbin/microbin \
+	--editable \
+	--linenumbers \
+	--highlightsyntax \
+	--port 34322 \
+	--threads 1 \
+	--auth-username <USERNAME> \
+	--auth-password <PASSWORD>
+
+[Install]
+WantedBy=multi-user.target
