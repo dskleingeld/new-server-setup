@@ -6,7 +6,8 @@ set -e
 # to get valid requests (by default run agains letsencrypt staging env)
 
 DOMAIN="davidsk.dev"
-SUBDOMAINS=(data dev.data ha)
+# can not use a catch all because then we need dns level verification which is dep on porvider
+SUBDOMAINS=(data dev.data ha paste www) 
 PORT=34320  # local port to which 80 is forwarded
 EMAIL="admin@$DOMAIN"
 SOURCE="/etc/letsencrypt/live/$DOMAIN"
@@ -33,7 +34,7 @@ if [[ $1 == "--renew" ]]; then
 elif [[ $1 == "--request" ]]; then
 	certbot certonly $STAGING --standalone -d $domains \
 		--non-interactive --agree-tos --email $EMAIL \
-		--http-01-port=$PORT
+		--http-01-port=$PORT --expand
 else
 	printf "\033[0;31mERROR call with --renew or --request\n"
 	exit -1
@@ -65,4 +66,4 @@ chmod 700 $TARGET_DIR/$CERT
 
 # Reload HAProxy if renew
 echo "certificates updated"
-[[ $1 == "--renew" ]] && systemctl reload haproxy
+systemctl reload haproxy
