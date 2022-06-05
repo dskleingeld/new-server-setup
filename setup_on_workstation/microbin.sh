@@ -2,9 +2,10 @@
 
 SERVER="sgc"
 
-dir=`mktemp`
+dir=`mktemp -d`
+git clone https://github.com/szabodanika/microbin $dir
+
 cd $dir
-git clone https://github.com/szabodanika/microbin
 cross build --target=aarch64-unknown-linux-gnu --release
 
 rsync -vh --progress \
@@ -18,3 +19,4 @@ sudo systemctl restart microbin.service
 "
 
 ssh -t $SERVER "$cmds"
+cd -
