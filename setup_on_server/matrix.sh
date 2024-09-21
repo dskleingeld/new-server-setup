@@ -33,5 +33,5 @@ function setup_a_server {
 	sudo systemctl restart $USER
 }
 
-setup_a_server davidsk.dev 34321 david
-setup_a_server evavh.net 34323 eva
+setup_a_server davidsk.dev 34321 matrix_david
+setup_a_server evavh.net 34323 matrix_eva
