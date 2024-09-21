@@ -1,4 +1,5 @@
-# TODO after install, replace <TOKEN> and <DOMAIN> with actual values
+# TODO after install, replace <USER> with actual values
+# (should be done by install script)
 
 [Unit]
 Description=Matrix home server
@@ -6,13 +7,13 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-Environment="CONDUIT_CONFIG=/home/matrix/conduit.toml"
-WorkingDirectory=/home/matrix/
+Environment="CONDUIT_CONFIG=/home/<USER>/conduit.toml"
+WorkingDirectory=/home/<USER>/
 Restart=always
-ExecStart=/home/matrix/conduit
+ExecStart=/home/<USER>/conduit
 ExecStop=/bin/kill -s SIGKILL $MAINPID
-User=matrix
-Group=matrix
+User=<USER>
+Group=<USER>
 
 [Install]
 WantedBy=multi-user.target

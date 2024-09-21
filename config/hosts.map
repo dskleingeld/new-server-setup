@@ -1,24 +1,16 @@
 # traffic on 433 and 8443 is send to different backends based on the subdomain on which they arrive
-# this file is a template <DOMAIN> (format example.org) must be filled during/after deployment
+# <DOMAIN_A> (format example.org) must be filled during/after deployment
+# <DOMAIN_B> same format is the domain for the second matrix server
 
 # http header 							backend
 
 # forward lets encrypt to certbot
-<DOMAIN>/.well-known/acme-challenge/	letsencryt_backend
+<DOMAIN_A>/.well-known/acme-challenge/	letsencryt_backend
+<DOMAIN_B>/.well-known/acme-challenge/	letsencryt_backend
 
-<DOMAIN>/_matrix 						matrix
-<DOMAIN>/								webserver
-www.<DOMAIN>/							webserver
+<DOMAIN_A>/_matrix 						matrix_a
+<DOMAIN_B>/_matrix 						matrix_b
+<DOMAIN_A>/								webserver
+www.<DOMAIN_A>/							webserver
 
-paste.<DOMAIN>/ 						microbin
-
-# Home automation system
-ha.<DOMAIN>								home_automation
-
-# send sensor data/errors to data_splitter
-data.<DOMAIN>/post_data 				data_splitter
-data.<DOMAIN>/post_error 				data_splitter
-
-# forward request for webpages to the two dataserver instances
-data.<DOMAIN>	 						data_server
-dev.data.<DOMAIN>	 					data_server_dev
+paste.<DOMAIN_A>/ 						microbin

@@ -7,9 +7,11 @@ set -e
 # setup folder
 #
 
-DOMAIN=$1 # optional argument: domain
-STATS_PASSW=$2 # optional argument: statistic page password
-[ -n "$DOMAIN" ] || read -r -p "enter domain on which to deploy: " DOMAIN
+DOMAIN=$1
+DOMAIN=$2 
+STATS_PASSW=$3 # haproxy statistic page password
+[ -n "$DOMAIN_A" ] || read -r -p "enter domain on which to deploy: " DOMAIN_A
+[ -n "$DOMAIN_B" ] || read -r -p "enter domain on which to deploy: " DOMAIN_B
 [ -n "$STATS_PASSW" ] || read -r -p "enter stats page admin password: " STATS_PASSW
 
 # install haproxy and certbot
@@ -21,7 +23,8 @@ id -u haproxy&>/dev/null || sudo useradd --no-create-home --shell /sbin/nologin 
 # move config into place, set the correct domain and set root owned
 for file in haproxy.cfg hosts.map; do
 	sudo cp ../config/$file /etc/haproxy/
-	sudo sed -i "s/<DOMAIN>/$DOMAIN/g" /etc/haproxy/$file  # set domain
+	sudo sed -i "s/<DOMAIN_A>/$DOMAIN_A/g" /etc/haproxy/$file  # set domain
+	sudo sed -i "s/<DOMAIN_B>/$DOMAIN_B/g" /etc/haproxy/$file  # set domain
 	sudo sed -i "s/<STATS_PASSW>/$STATS_PASSW/g" /etc/haproxy/$file  # set domain
 	sudo chown root:root /etc/haproxy/$file  # no reason for mortals to touch this
 done
