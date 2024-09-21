@@ -12,7 +12,7 @@ function setup_a_server {
 
 	EXEC=/home/$USER/conduit
 	URL=https://gitlab.com/api/v4/projects/famedly%2Fconduit/jobs/artifacts/master/raw/aarch64-unknown-linux-musl?job=artifacts
-	sudo systemctl stop $USER
+	sudo systemctl stop $USER | true
 	sudo wget -O $EXEC $URL
 	sudo chmod +x $EXEC
 	sudo chown $USER:$USER $EXEC
