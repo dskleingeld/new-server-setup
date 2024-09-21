@@ -15,7 +15,7 @@ STATS_PASSW=$3 # haproxy statistic page password
 [ -n "$STATS_PASSW" ] || read -r -p "enter stats page admin password: " STATS_PASSW
 
 # install haproxy and certbot
-sudo apt-get install -y haproxy certbot -
+sudo apt-get install -y haproxy -
 
 # setup haproxy user if it does not exist yet
 id -u haproxy&>/dev/null || sudo useradd --no-create-home --shell /sbin/nologin haproxy
