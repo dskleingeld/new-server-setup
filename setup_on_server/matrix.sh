@@ -33,13 +33,5 @@ function setup_a_server {
 	sudo systemctl restart $USER
 }
 
-# templated vars
-DOMAIN=$1
-[ -n "$DOMAIN" ] || read -r -p "enter domain: " DOMAIN
-PORT=$2
-[ -n "$PORT" ] || read -r -p "enter port: " PORT
-USER=$3
-[ -n "$USER" ] || read -r -p "enter user to run server on: " USER
-
 setup_a_server davidsk.dev 34321 david
 setup_a_server evavh.net 34323 eva
