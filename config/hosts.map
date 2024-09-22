@@ -9,7 +9,10 @@
 <DOMAIN_B>/.well-known/acme-challenge/	letsencryt_backend
 
 <DOMAIN_A>/_matrix 						matrix_a
+<DOMAIN_A>:8448/_matrix 				matrix_a
 <DOMAIN_B>/_matrix 						matrix_b
+<DOMAIN_B>:8448/_matrix 				matrix_b
+
 <DOMAIN_A>/								webserver
 www.<DOMAIN_A>/							webserver
 

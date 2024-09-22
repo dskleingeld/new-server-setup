@@ -28,6 +28,10 @@ database_backend = "rocksdb"
 # Docker users: Don't change this, you'll need to map an external port to this.
 port = <PORT> # was 34321
 
+# pi is limited to 200. Two matrix server instances each 50 
+# then 50 left for the system and 50 for homeautomation etc
+max_concurrent_requests = 50
+
 # Max size for uploads
 max_request_size = 20_000_000 # in bytes
 
